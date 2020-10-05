@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tripresso</title>
+    <link rel="stylesheet" href="./css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/menu.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="banner"></div>
+      <article class="searchContainer">
+        <div class="container-fluid">
+          <div class="filterFinalBox">
+            <div class="strokeBox">
+              <div class="strokeName">
+                <strong>
+                  <h2 class="searchTitle">台灣旅遊</h2>
+                  <span class="searchCount">132</span>個行程，平均團費
+                  <span class="searchCount">4,500</span>元
+                </strong>
+              </div>
+            </div>
+            <!-- 排序標籤 -->
+            <div class="sortBox">
+              <span class="sortByTitle">排序</span>
+              <ul class="changeTags clearfix" style="margin-bottom: initial;">
+                <li class="score" @click="startSort('rating')">精選評分
+                  <span class="icon" :class="{'inverse': isReverse}" v-if="sortName == 'rating'"><i class="fas fa-caret-down"></i></span>                
+              </li>
+                <li class="score" @click="startSort('min_price')">價格
+                    <span class="icon" :class="{'inverse': isReverse}" v-if="sortName == 'min_price'"><i class="fas fa-caret-down"></i></span>                
+                </li>
+                <li class="score" @click="startSort('tour_days')">天數
+                    <sapn class="icon" :class="{'inverse': isReverse}" v-if="sortName == 'tour_days'"><i class="fas fa-caret-down"></i></sapn>                                         
+                </li>
+                <li class="score" style="padding: initial;"><a href="#">出發日期</a></li>
+              </ul>
+            </div>
+            <div class="resultTours" :click-handler="pageCallback">
+              <ul class="tour" v-for="item in filterData">
+                <li class="tourBox hoverable">                
+                    <a href="#" target="_blank" class="clickTrack" itemprop="url">
+                      <div class="imgGroup" :style="{'background-image': `url(${item.image_url})`}"></div>
+                    </a>              
+                  <div class="tourInfo">
+                    <div class="infoGroup">
+                      <div class="tourTop">
+                        <div class="topItem">
+                          <div itemscope itemtype="http://schema.org/Organization">
+                            <a itemprop="url" href="#" target="_blank" >
+                              <div class="travelName" itemprop="name">
+                                <strong>{{ item.agency }}</strong>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="topItem"> 
+                            <a href="#" class="toolTipBox">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        </div>
+                      </div>
+                      <a itemprop="url" href="#" target="_blank" class="clickTrack">
+                        <div class="strokeName">
+                          <strong>
+                            <h2 itemprop="name" title="【樂遊花蓮】太魯閣砂卡噹步道、海洋公園度假二日趣">{{ item.title }}</h2>
+                          </strong>
+                        </div>
+                      </a>
+                      <div class="locateBox">
+                        <div class="locate">
+                          <i class="fas fa-map-marker-alt">
+                            <h3>花蓮</h3>
+                          </i>
+                        </div>
+                      </div>
+                      <ul class="preFlag">
+                        <li class="tag tripressoTag" v-for="(tag, index) in item.tags">{{ tag }}</li>
+                      </ul>
+                    </div>
+                    <div class="tourBottomBox">
+                      <div class="dateFavoriteBox">
+                        <div class="dateBox">
+                          <div class="dateList">
+                            <div class="flagGroupStatus isShow" rel="selled">
+                              <a itemprop="url" href="#" target="_blank" class="clickTrack">
+                                <template v-for="(date, dateIndex) in item.group">                   
+                                <div class="toolTipBox" v-if="dateIndex < 4 ">
+                                  {{ date.date }}
+                                  <template v-for="(person, personIndex) in item.group" >                                
+                                    <div class="toolTipTextBox"  v-if="personIndex === 0">
+                                      可售{{ person.quantity }}位
+                                    </div>
+                                  </template>
+                                </div>
+                              </template>
+                              </a>
+                            </div>
+                          </div>
+                          <div class="dateMore">
+                            <div class="choiceDate">更多日期</div>
+                          </div>
+                        </div>
+                        <a class="discountInfo clickTrack" href="#" target="_blank">
+                          <div class="disscountBox">
+                            <ul>
+                              <li>
+                                <div class="dayPriceBox">
+                                  <div class="dayPrice">
+                                    <span>3</span>天
+                                    <span content="7999">7,999</span>元起
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>  
+              </ul>
+              <div class="paginationBox">
+                <paginate 
+                :page-count="2"
+                :page-range="3"
+                :margin-pages="5"
+                :prev-text="'Prev'"
+                :next-text="'Next'"
+                :container-class="'pagination'"
+                :page-class="'page-item'" 
+                :click-handler="pageCallback">
+              </paginate>
+              </div>
+            </div>                    
+          </div>
+        </div>
+      </article>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://unpkg.com/vuejs-paginate@latest"></script>
+    <!-- use the latest release -->
+    <script src="https://unpkg.com/vuejs-paginate@latest"></script>
+    <!-- or use the specify version -->
+    <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/dropDown.js"></script>       
+    <script src="./js/main.js"></script>          
+    
+  </body>
+</html>

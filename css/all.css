@@ -1,0 +1,449 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+h2{
+  margin-top: initial !important;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+body {
+  line-height: 1.5;
+  background-color: #eee !important;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+html,body {
+  position: relative;
+  height: 100%;
+  overflow-x: hidden;
+}
+[role=button], a, area, button, input, label, select, summary, textarea{
+  touch-action: manipulation;
+}
+[role=button]{
+  cursor: pointer;
+}
+/* *{
+  border: 1px solid grey !important;
+} */
+#app{
+  max-width: 1140px;
+  height: 100%;
+  margin: 0 auto;
+}
+.banner{
+  max-width: 100%;
+  height: 260px;
+  margin-bottom: 20px;
+  background-image: url(https://img.onl/UjA4as);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.searchContainer{
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1140px;
+  padding-top: 15px;
+}
+.container-fluid{
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+.filterFinalBox{
+  box-sizing: inherit;
+}
+.strokeBox{
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+}
+.strokeName{
+  position: relative;
+  overflow: hidden;
+}
+.strokeName strong{
+  float: left;
+}
+.searchTitle{
+  font-weight: 700;
+  font-size: 20px;
+  display: inline-block;
+}
+.searchCount{
+  padding: 0 5px;
+  color: #0277bd;
+  font-size: 18px;
+}
+.searchCountText{
+  color: black;
+}
+.sortBox{
+  display: flex;
+  background-color: #fff;
+  min-height: 55px;
+  margin: 15px 0;
+  align-items: center;
+  flex-direction: row;
+  color: #616161;
+}
+.sortByTitle{
+  width: 70px;
+  padding: 0 15px;
+  flex: none;
+  text-align: center;
+  font-weight: 700;
+  line-height: 55px;
+  border-right: 1px #eee solid;
+}
+.changeTags{
+  width: 100%;
+  display: flex;
+}
+.changeTags li{
+  float: left;
+  width: calc((100% - 100px) / 4);
+  height: 55px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+  transition: all 0.5s ease;
+  text-decoration: none; 
+  padding: 15px;
+}
+.sortByButton{
+  padding: 5px 0;
+}
+.changeTags li:hover{
+  background-color: rgb(245, 245, 245);
+}
+.changeTags li a:focus{
+  background-color: #9e9e9e;
+  color: #eee;
+}
+.changeTags li a{
+  width: 100%;
+  height: 55px;
+  color: #616161;
+  padding: 18px 0;
+  display: inline-block;
+  margin: 0 auto;
+}
+.dropdown-toggle{
+  height: 100%;
+  display: flex;
+}
+.icon {
+  display: inline-block;
+}
+.icon.inverse {
+  transform: rotate(180deg)
+}
+.tourBox{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.tourBox.hoverable{
+  transform:scale(1,1);
+  transition: all 0.6s ease;
+}
+.hoverable:hover{
+  box-shadow: 0 5px 15px #b1b1b1;
+  /* transform:scale(1,1);  */
+}
+.imgGroup{
+  height: 100%;
+  width: 220px;
+  overflow: hidden;
+  position: relative;
+  background-image: url(https://img.onl/q2CFOK);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.tourInfo{
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  vertical-align: top;
+  border-right: 1px #eee solid;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+.tourInfo > div{
+  flex: 1;
+}
+.infoGroup{
+  padding-bottom: 10px;
+}
+.tourTop{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px 15px 5px;
+}
+.topItem{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.topItem > div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.topItem > a{
+  color: #03a9f4;
+  cursor: pointer;
+}
+.travelName{
+  color: #777;
+  float: left;
+  font-size: 14px;
+}
+.travelName strong{
+  font-weight: normal;
+}
+.strokeName{
+  clear: both;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  color: #333;
+  padding: 0 15px;
+}
+.strokeName strong{
+  color: #333;
+  font-size: 16px;
+}
+.tourInfo .infoGroup .strokeName h2{
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+.locateBox{
+  display: flex;
+  align-items: center;
+  position: relative;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: 5px;
+}
+.locate{
+  display: inline-block;
+  font-size: 12px;
+  color: #757575;
+  font-weight: bold;
+  background-color: #f5f5f5;
+  vertical-align: middle;
+  padding: 5px 12px;
+}
+.fa-map-marker-alt{
+  font-size: 12px;
+  color: #bdbdbd;
+  line-height: 18px;
+  vertical-align: bottom;
+}
+.locate h3{
+  font-size: 12px;
+  display: inline;
+  font-weight: 700;
+}
+.preFlag{
+  margin: 10px 15px 15px;
+  font-size: 0;
+}
+.preFlag .tag{
+  display: inline-block;
+  margin: 3px;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 0 7px;
+  color: #03a9f4;
+  background-color: #fff;
+  border: 1px #03a9f4 solid;
+  cursor: default;
+}
+.preFlag .tag[rel="goldAward"]{
+  display: none;
+}
+.preFlag .tag.tripressoTag[data-toggle="popover"],.preFlag .tag.discountTag[data-toggle="popover"]{
+  position: relative;
+  padding-right: 18px;
+}
+.dateFavoriteBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  border-top: 1px #eee solid;
+}
+.dateBox{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 5px 0 5px 20px;
+  position: relative;
+}
+.dateList{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  white-space: nowrap;
+}
+.flagGroupStatus{
+  font-size: 13px;
+  font-weight: 200;
+  position: relative;
+}
+.flagGroupStatus:first-child{
+  margin-left: 0;
+}
+.flagGroupStatus.isShow:nth-child(1), .flagGroupStatus.isShow:nth-child(2), .flagGroupStatus.isShow:nth-child(3){
+  display: inline;
+}
+.flagGroupStatus a{
+  transform: all 0.5s ease;
+  text-decoration: none;
+}
+.flagGroupStatus[rel='selled'] a{
+  color: #03a9f4;
+}
+.toolTipBox{
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  margin-right: 15px;
+}
+.toolTipTextBox{
+  width: 60px;
+  font-size: 12px;
+  background-color: inherit;
+  border: 1px #03a9f4 solid;
+  color: #03a9f4;
+  padding: 4px 0;
+  border-radius: 3px;
+  text-align: center;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  line-height: 1;
+}
+.dateMore{
+  font-size: 12px;
+  cursor: pointer;
+}
+.choiceDate{
+  color: #03a9f4;
+}
+.discountInfo{
+  flex: none;
+  width: 190px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px 5px 0;
+}
+.dayPriceBox{
+  text-align: right;
+}
+.dayPrice{
+  font-size: 14px;
+  color: #333;
+}
+.dayPrice span{
+  color: #ff9800;
+  font-size: 23px;
+  font-weight: 700;
+}
+.paginationBox{
+  text-align: center;
+}
