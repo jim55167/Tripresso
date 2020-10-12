@@ -1,4 +1,4 @@
-Git pages：https://jim55167.github.io/Tripresso/ 
+Git pages：https://jim55167.github.io/Tripresso-Vue.js/
 # feat:
 #### 因應需求增加排序功能:
 isReverse預設為false，sortName=" "
