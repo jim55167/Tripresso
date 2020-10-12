@@ -4,9 +4,9 @@ const page_size = 5;
 var app = new Vue({
     el: '#app',
     data:{
-        data:[],  //設定空白欄位，陣列為空
-        sortName: "", //空白字串
-        isReverse: false,  //預設isReverse為false
+        data:[], 
+        sortName: "", 
+        isReverse: false,
         currentPage: 1,
         pageCount: 1
     },
