@@ -1,26 +1,22 @@
 Vue.component('paginate', VuejsPaginate)
-const page_size = 5;
 
 var app = new Vue({
     el: '#app',
     data:{
         data:[], 
-        sortName: "", 
-        isReverse: false,
+        sortName: "",
+        filter: '',
+        isReverse: false, 
         currentPage: 1,
-        pageCount: 1
+        pageCount: 1,
+        page_size: 4,
     },
-    created: function(){
+    created: function(){ 
         this.getData();
     },
-    watch: {
-        data: function(){ 
-            this.setPage2Model();
-        }
-    },
     methods: {
-        getData: function(){
-            const vm = this;
+        getData: function(){ 
+            const vm = this; 
             const api = 'https://script.google.com/macros/s/AKfycbzl6KKgb4v2-F3SCVxVaXjnMwM_XQvnk2A08nw7NjmGfuRVmak0/exec?url=http://interview.tripresso.com/tour/search?page=2&row_per_page=5&sort=price_asc';
             $.get(api).then(function( response ) { 
                 vm.data = response.data.tour_list;  
@@ -28,42 +24,44 @@ var app = new Vue({
               });
         },
         startSort: function(sortName){   
-              this.isReverse = !this.isReverse;         
+              this.isReverse = !this.isReverse;          
               this.sortName = sortName;
           },  
-        setPage2Model: function(){
-            let vm = this;
-            let err = vm.data.length;
-            if (err <= 0) {
-                vm.pageCount = 1;
-            }else{
-                vm.pageCount = parseInt(err / page_size) + (err % page_size > 0 ? 1 : 0);
-                for (let i = 0; i < err; i++){
-                    vm.$set(vm.data[i], "paginate", parseInt(i / page_size) + 1);
-                }
-            }
-        },       
         pageCallback: function(pageNum) {
             let vm = this;
-            this.$set(vm, 'currentPage', pageNum);
+            vm.$set(vm, 'currentPage', pageNum);
             console.log(pageNum)
         },
     },
     computed: {
-        filterData: function(){
+        filterData: function(){ 
             let vm = this;
             let err = vm.data.length;
+            let arr = vm.page_size;
             let data = vm.data.sort(function(a,b){ 
                 a = a [vm.sortName];
-                b = b [vm.sortName];
+                b = b [vm.sortName];              
                 return vm.isReverse ? b-a : a-b;                
-            });
-            if (err > 0) {
-                return vm.data.filter(function (x) {
-                    return x.paginate === vm.currentPage;                  
-                });
+            })
+            if (vm.filter === '') {
+               let pageTotal = err % arr === 0 ? err / arr : Math.ceil(err / arr);
+               let pageNumber = 1;
+               vm.pageCount = pageTotal;
+               vm.data.forEach(function(item,index){
+                   if(index < (arr * pageNumber)){
+                       vm.$set(item, "paginate", pageNumber);
+                   }
+                   if((index + 1) === (arr * pageNumber) && pageNumber < pageTotal){
+                       pageNumber++                       
+                   }
+                   console.log(item);
+               })
+               let pageData = vm.data.filter(function(item){
+                   return item.paginate === vm.currentPage;
+               })
+               return pageData;
             }
             return data;            
-        },
-    },    
+        }
+    }    
 })
