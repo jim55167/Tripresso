@@ -9,7 +9,7 @@ var app = new Vue({
         isReverse: false, 
         currentPage: 1,
         pageCount: 1,
-        page_size: 4,
+        page_size: 5,
     },
     created: function(){ 
         this.getData();
@@ -17,7 +17,11 @@ var app = new Vue({
     methods: {
         getData: function(){ 
             const vm = this; 
-            const api = 'https://script.google.com/macros/s/AKfycbzl6KKgb4v2-F3SCVxVaXjnMwM_XQvnk2A08nw7NjmGfuRVmak0/exec?url=http://interview.tripresso.com/tour/search?page=2&row_per_page=5&sort=price_asc';
+            let pageName = '2';
+            let rowperName = '50';
+            let sortName = 'price_asc';
+            let api = 'https://interview.tripresso.com/tour/search?page=' + pageName + '&row_per_page=' + rowperName + '&sort=' + sortName;
+            console.log(api);
             $.get(api).then(function( response ) { 
                 vm.data = response.data.tour_list;  
                 console.log(vm.data)
