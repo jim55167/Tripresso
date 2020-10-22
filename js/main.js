@@ -58,7 +58,7 @@ var app = new Vue({
                    if((index + 1) === (arr * pageNumber) && pageNumber < pageTotal){
                        pageNumber++                       
                    }
-                //    console.log(item);
+                   console.log(item);
                })
                let pageData = vm.data.filter(function(item){
                    return item.paginate === vm.currentPage;
