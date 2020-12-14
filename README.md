@@ -1,4 +1,6 @@
 Git pages：https://jim55167.github.io/Tripresso-Vue.js/
+## 因目前Tripresso旅遊網將API關閉，所以資料顯示不出來
+
 # feat:
 #### 因應需求增加排序功能:
 isReverse預設為false，sortName=" "
